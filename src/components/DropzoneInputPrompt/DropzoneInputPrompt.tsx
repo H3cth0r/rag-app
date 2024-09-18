@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast.ts";
+import { useToast } from "@/hooks/use-toast";
+import { Toaster } from "@/components/ui/toaster"
 
 interface ItemInfo {
   type: 'repo' | 'file';
@@ -176,6 +177,7 @@ export function DropzoneInputPrompt() {
           </div>
         )}
       </Card>
+      <Toaster />
     </div>
   )
 }
