@@ -22,7 +22,12 @@ export  const  MenuToggle : React.FC<MenuToggleProps> = ({
           <HamburgerMenuIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100" />
         </Button>
       </SheetTrigger>
-      <SheetContent>
+      <SheetContent style={{ maxWidth: '25vw' }}>
+        <SheetHeader> 
+          <SheetTitle>Menu</SheetTitle>
+        </SheetHeader> 
+        <div className="grid gap-4 py-4 bg-blue-500">
+        </div>
         <SheetFooter>
           <SheetClose asChild>
             <Button >Save changes</Button>
