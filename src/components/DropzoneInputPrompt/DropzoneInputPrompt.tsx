@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast.ts";
 
 interface ItemInfo {
   type: 'repo' | 'file';
@@ -19,6 +20,7 @@ export function DropzoneInputPrompt() {
   const [inputText, setInputText] = useState('')
   const [repoUrl, setRepoUrl] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const { toast } = useToast()
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -47,14 +49,39 @@ export function DropzoneInputPrompt() {
   }
 
   const addFiles = (newFiles: File[]) => {
-    const newItems = newFiles.map(file => ({ type: 'file' as const, object: file, name: file.name }))
+    const duplicates: string[] = []
+    const newItems = newFiles.filter(file => {
+      const isDuplicate = items.some(item => item.name === file.name)
+      if (isDuplicate) {
+        duplicates.push(file.name)
+      }
+      return !isDuplicate
+    }).map(file => ({ type: 'file' as const, object: file, name: file.name }))
+
+    if (duplicates.length > 0) {
+      toast({
+        title: "Duplicate files detected",
+        description: `The following files were not added: ${duplicates.join(', ')}`,
+        variant: "destructive",
+      })
+    }
+
     setItems(prevItems => [...prevItems, ...newItems])
   }
 
   const addRepoUrl = () => {
     if (repoUrl.trim()) {
-      setItems(prevItems => [...prevItems, { type: 'repo', object: repoUrl, name: repoUrl }])
-      setRepoUrl('')
+      const isDuplicate = items.some(item => item.name === repoUrl)
+      if (isDuplicate) {
+        toast({
+          title: "Duplicate repo URL",
+          description: "This repo URL has already been added.",
+          variant: "destructive",
+        })
+      } else {
+        setItems(prevItems => [...prevItems, { type: 'repo', object: repoUrl, name: repoUrl }])
+        setRepoUrl('')
+      }
     }
   }
 
@@ -123,6 +150,7 @@ export function DropzoneInputPrompt() {
               className="mr-2"
             >
               <Upload className="w-4 h-4 mr-2" />
+              Add Files
             </Button>
           </div>
           <div className="flex-grow mx-4">
