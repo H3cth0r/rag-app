@@ -10,7 +10,6 @@ export const PromptBox:  React.FC<PromptBoxProps>  = ({
 }) => {
   return(
     <Card className="w-full h-full bg-green-300">
-      <Textarea placeholder="Type your message here." /> 
     </Card>
   );
 }

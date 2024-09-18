@@ -1,4 +1,4 @@
-import { PromptBox, TypingAnimation } from '@/components';
+import { PromptBox, TypingAnimation, DropzoneInputPrompt } from '@/components';
 
 export default function Home() {
   const baseText = "RaggApp is ";
@@ -15,8 +15,8 @@ export default function Home() {
         <div className="h-2/5 w-full">
           <TypingAnimation baseText={baseText} phrases={phrases} />
         </div>
-        <div className="h-3/5 w-full bg-blue-500">
-          <PromptBox />
+        <div className="h-3/5 w-full ">
+          <DropzoneInputPrompt />
         </div>
       </div>
     </div>
