@@ -10,7 +10,7 @@ export const NavBar: React.FC<NavBarProps> = ({
       <div class="flex flex-row h-[6vh] items-center justify-between">
         <div class="ml-8">
           <h2 className="scroll-m-20 text-4xl font-extrabold tracking-tight ">
-            RagApp
+            RaggApp
           </h2>
         </div>
         <div class="mr-8">
