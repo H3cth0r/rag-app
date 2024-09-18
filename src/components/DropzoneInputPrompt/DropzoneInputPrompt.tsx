@@ -1,20 +1,23 @@
 'use client'
 
 import React, { useState, useRef } from 'react';
-import { X, Upload, File, Send } from 'lucide-react';
+import { X, Upload, File, Send, Link } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 
-interface FileInfo {
-  name: string
-  type: string
+interface ItemInfo {
+  type: 'repo' | 'file';
+  object: string | File;
+  name: string;
 }
 
 export function DropzoneInputPrompt() {
-  const [files, setFiles] = useState<FileInfo[]>([])
+  const [items, setItems] = useState<ItemInfo[]>([])
   const [isDraggingFile, setIsDraggingFile] = useState(false)
   const [inputText, setInputText] = useState('')
+  const [repoUrl, setRepoUrl] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -44,17 +47,24 @@ export function DropzoneInputPrompt() {
   }
 
   const addFiles = (newFiles: File[]) => {
-    const newFileInfos = newFiles.map(file => ({ name: file.name, type: file.type }))
-    setFiles(prevFiles => [...prevFiles, ...newFileInfos])
+    const newItems = newFiles.map(file => ({ type: 'file' as const, object: file, name: file.name }))
+    setItems(prevItems => [...prevItems, ...newItems])
   }
 
-  const removeFile = (index: number) => {
-    setFiles(prevFiles => prevFiles.filter((_, i) => i !== index))
+  const addRepoUrl = () => {
+    if (repoUrl.trim()) {
+      setItems(prevItems => [...prevItems, { type: 'repo', object: repoUrl, name: repoUrl }])
+      setRepoUrl('')
+    }
+  }
+
+  const removeItem = (index: number) => {
+    setItems(prevItems => prevItems.filter((_, i) => i !== index))
   }
 
   const handleSubmit = () => {
     console.log('Submitted text:', inputText)
-    console.log('Submitted files:', files)
+    console.log('Submitted items:', items)
     // Here you would typically send the data to your backend
   }
 
@@ -79,14 +89,18 @@ export function DropzoneInputPrompt() {
         />
         <div className="max-h-40 overflow-y-auto mb-4">
           <div className="flex flex-wrap gap-2">
-            {files.map((file, index) => (
+            {items.map((item, index) => (
               <Card key={index} className="flex items-center rounded-md p-2">
-                <File className="w-4 h-4 mr-2" />
-                <span className="text-sm truncate max-w-[150px]">{file.name}</span>
+                {item.type === 'file' ? (
+                  <File className="w-4 h-4 mr-2" />
+                ) : (
+                  <Link className="w-4 h-4 mr-2" />
+                )}
+                <span className="text-sm truncate max-w-[150px]">{item.name}</span>
                 <button
-                  onClick={() => removeFile(index)}
+                  onClick={() => removeItem(index)}
                   className="ml-2 text-red-500 hover:text-red-700"
-                  aria-label={`Remove ${file.name}`}
+                  aria-label={`Remove ${item.name}`}
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -109,8 +123,19 @@ export function DropzoneInputPrompt() {
               className="mr-2"
             >
               <Upload className="w-4 h-4 mr-2" />
-              Add Files
             </Button>
+          </div>
+          <div className="flex-grow mx-4">
+            <div className="flex">
+              <Input
+                type="text"
+                value={repoUrl}
+                onChange={(e) => setRepoUrl(e.target.value)}
+                placeholder="Repo URL"
+                className="mr-2"
+              />
+              <Button onClick={addRepoUrl}>Add</Button>
+            </div>
           </div>
           <Button onClick={handleSubmit}>
             <Send className="w-4 h-4 mr-2" />
