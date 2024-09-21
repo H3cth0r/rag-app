@@ -10,6 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { LoginUserMenuCard } from "@/components";
 
 interface MenuToggleProps {
 }
@@ -26,7 +27,8 @@ export  const  MenuToggle : React.FC<MenuToggleProps> = ({
         <SheetHeader> 
           <SheetTitle>Menu</SheetTitle>
         </SheetHeader> 
-        <div className="grid gap-4 py-4 bg-blue-500">
+        <div className="grid gap-4 py-4 ">
+          <LoginUserMenuCard />
         </div>
         <SheetFooter>
           <SheetClose asChild>
