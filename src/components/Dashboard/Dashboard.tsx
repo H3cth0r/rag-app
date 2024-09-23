@@ -8,8 +8,11 @@ import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/resizable";
+import { 
+  Separator 
+} from  "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 
 interface DashboardProps {
@@ -25,6 +28,7 @@ export const Dashboard : React.FC<DashboardProps> = ({
   const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
   return (
     <TooltipProvider delayDuration={0}>
+          <Separator />
       <ResizablePanelGroup
         direction="horizontal"
         onLayour={(sizes: number[]) => {
@@ -57,7 +61,10 @@ export const Dashboard : React.FC<DashboardProps> = ({
               "min-w-[50px] transition-all duration-300 ease-in-out"
           )}
         >
-        asdf
+          
+          <p>asdf</p>
+          <Separator />
+          <p>asdf</p>
         </ResizablePanel>
         <ResizableHandle withHandle />
         <ResizablePanel
