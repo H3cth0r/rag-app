@@ -24,7 +24,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({
       <div className="flex items-center   w-[90%] h-[90%] ">
     <DropdownMenu>
       <DropdownMenuTrigger className="w-full h-full" asChild>
-        <Button variant="ghost" className="h-[60%]">
+        <Button variant="ghost" className="h-[65%]">
             <div className="flex w-1/5 items-center justify-center ">
               <Avatar>
                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
