@@ -6,3 +6,4 @@ export { TypingAnimation } from './TypingAnimation/TypingAnimation.tsx';
 export { DropzoneInputPrompt } from './DropzoneInputPrompt/DropzoneInputPrompt.tsx';
 export { LoginUserMenuCard } from './LoginUserMenuCard/LoginUserMenuCard.tsx';
 export { Dashboard } from './Dashboard/Dashboard.tsx';
+export { ProjectSwitcher } from './ProjectSwitcher/ProjectSwitcher.tsx';
