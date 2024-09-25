@@ -14,6 +14,7 @@ import {
   ChatBubbleIcon,
   FilePlusIcon,
   Link1Icon,
+  ColorWheelIcon,
 } from "@radix-ui/react-icons";
 
 interface LinkType {
@@ -32,18 +33,23 @@ interface OptionsMenuProps {
 const defaultLinks: LinkType[] = [
   {
     title: "Chat",
-    label: "Chat",
+    label: "3",
     icon: ChatBubbleIcon,
   },
   {
     title: "Files",
-    label: "Files",
+    label: "1k+",
     icon: FilePlusIcon,
   },
   {
     title: "Repositories",
-    label: "Repositories",
+    label: "",
     icon: Link1Icon,
+  },
+  {
+    title: "Team",
+    label: "",
+    icon: ColorWheelIcon,
   },
 ];
 
