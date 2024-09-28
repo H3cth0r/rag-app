@@ -15,7 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import { OptionsMenu } from "./OptionsMenu"
 
-import { ChatCard } from "@/components";
+import { ChatList } from "@/components";
 
 interface DashboardProps {
   defaultLayout: number[];
@@ -51,7 +51,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
             sizes
           )}`
         }}
-        className="h-full items-stretch bg-green-300"
+        className="h-full items-stretch "
       > 
         <ResizablePanel
           defaultSize={defaultLayout[0]}
@@ -87,7 +87,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
           defaultSize={defaultLayout[1]}
           minSize={30}
         >
-          <div className="h-full overflow-y-auto p-4 bg-red-400">
+          <div className="h-full overflow-y-auto p-4 ">
             <h2 className="text-2xl font-bold mb-4">{selectedOption}</h2>
             {selectedOption === "Chat" && (
               <div>
@@ -95,7 +95,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
                 <button onClick={() => handleContentSelect("Chat Details")} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">
                   Open Chat Details
                 </button>
-                <ChatCard />
+                <ChatList />
               </div>
             )}
             {selectedOption === "Files" && (
