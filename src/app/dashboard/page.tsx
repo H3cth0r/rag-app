@@ -4,6 +4,8 @@ import {
 
 export default function dashboard() {
   return (
-    <Dashboard />
+    <div className="h-[94vh] w-full bg-blue-300">
+      <Dashboard />
+    </div>
   );
 }
