@@ -7,7 +7,7 @@ const example_chat = [
   {
     id: "f423f",
     title: "Random chat",
-    description: "This is a simple example of what this thing look like.",
+    description: "This is a simple example of what this thing look like.This is a simple example of what this thing look like.This is a simple example of what this thing look like.",
     date: "10/09/2020"
   }
 ];

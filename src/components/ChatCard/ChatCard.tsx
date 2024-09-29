@@ -38,7 +38,7 @@ export const ChatCard: React.FC<ChatCardProps> = ({
         <h1 className="text-lg font-thin">{chat_item.date}</h1>
       </div>
       <div className="flex flex-row w-full ">
-        <p className="text-base font-normal">{chat_item.description}</p> 
+        <p className="text-base font-normal line-clamp-1">{chat_item.description}</p> 
       </div>
       <div className="flex flex-row w-full justify-end">
         <DropdownMenu>
